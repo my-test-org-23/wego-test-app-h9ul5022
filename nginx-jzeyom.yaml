@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-nginx-jzeyom
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-jzeyom
+  namespace: my-nginx-jzeyom
+  labels:
+    name: nginx-jzeyom
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: nginx-jzeyom
+  template:
+    metadata:
+      namespace: my-nginx-jzeyom
+      labels:
+        name: nginx-jzeyom
+    spec:
+      containers:
+      - name: nginx-jzeyom
+        image: nginx
+        ports:
+        - containerPort: 80
+
